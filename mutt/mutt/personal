@@ -1,0 +1,8 @@
+set realname = ""
+set from = " <>"
+alternates ""
+
+set smtp_url=smtps://LOGIN\@gmail.com:PASSWORD@smtp.gmail.com/
+
+set imap_user=LOGIN
+set imap_pass=PASSWORD
