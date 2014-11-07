@@ -81,6 +81,7 @@ au FileType txt         set spell
 
 set nojoinspaces    " Do not insert double spaces.  After a peroid.
 set textwidth=78
+au FileType muttrc      set textwidth=0
 au FileType python      set textwidth=0
 au FileType sh          set textwidth=0
 au FileType sql         set textwidth=0
