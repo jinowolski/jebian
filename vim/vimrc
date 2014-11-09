@@ -19,6 +19,8 @@ set showcmd
 set showmode
 set softtabstop=4
 set tabstop=4
+set laststatus=2
+set statusline=%n\ %y\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 nohlsearch
 
 augroup lang_local
