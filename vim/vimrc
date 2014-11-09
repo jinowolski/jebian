@@ -20,19 +20,25 @@ set showmode
 set softtabstop=4
 set tabstop=4
 nohlsearch
-autocmd BufEnter *.html setlocal indentexpr=
-autocmd BufRead *.py set ai
-autocmd BufRead *.py set ts=4
-autocmd BufRead *.py set sts=4
-autocmd BufRead *.py set et
-autocmd BufRead *.py set sw=4
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd BufWritePre *.py 1,$s/\s\+$//e
 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+augroup lang_local
+    autocmd!
+    autocmd BufEnter            *.html  setlocal indentexpr=
+    autocmd BufNewFile,BufRead  *.py    setlocal ai
+    autocmd BufNewFile,BufRead  *.py    setlocal ts=4
+    autocmd BufNewFile,BufRead  *.py    setlocal sts=4
+    autocmd BufNewFile,BufRead  *.py    setlocal et
+    autocmd BufNewFile,BufRead  *.py    setlocal sw=4
+    autocmd BufNewFile,BufRead  *.py    setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+    autocmd BufWritePre         *.py    1,$s/\s\+$//e
+
+    autocmd FileType python             setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType javascript         setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType html               setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType css                setlocal omnifunc=csscomplete#CompleteCSS
+
+    autocmd FileType make               setlocal noexpandtab
+augroup END
 
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 \ "\<lt>C-n>" :
@@ -46,44 +52,58 @@ set completeopt=longest,menuone
 "autocmd FileType python python
 highlight PmenuSel ctermbg=green gui=bold
 
-autocmd FileType make set noexpandtab
-
 
 " highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
-au ColorScheme * highlight ExtraWhitespace guibg=red
-au BufEnter * match ExtraWhitespace /\s\+$/
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhiteSpace /\s\+$/
+
+augroup colors_local
+    autocmd!
+    autocmd ColorScheme         *   highlight ExtraWhitespace guibg=red
+    autocmd BufEnter            *   match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter         *   match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave         *   match ExtraWhiteSpace /\s\+$/
+augroup END
 
 set cursorline
 set colorcolumn=79,80
-hi CursorLine   cterm=NONE ctermbg=darkgrey guibg=lightgrey
-hi CursorColumn cterm=NONE ctermbg=darkgrey guibg=lightgrey
-hi ColorColumn  cterm=NONE ctermbg=darkgrey guibg=lightgrey
+highlight CursorLine   cterm=NONE ctermbg=darkgrey guibg=lightgrey
+highlight CursorColumn cterm=NONE ctermbg=darkgrey guibg=lightgrey
+highlight ColorColumn  cterm=NONE ctermbg=darkgrey guibg=lightgrey
 
-nnoremap - ddp
-nnoremap _ ddkP
-inoremap <c-u> <esc>viwUea
-nnoremap <c-u> viwUe
 
 syn spell toplevel
 set spelllang=pl,en
 "" Enable spell checking for any unknown filetype
 set spell
-"" Disable spell checking for any known filetype...
-au FileType *           set nospell
-"" ...unless it is one of the following:
-au FileType gitcommit   set spell
-au FileType mail        set spell
-au FileType rst         set spell
-au FileType txt         set spell
+augroup spell_local
+    autocmd!
+    "" Disable spell checking for any known filetype...
+    autocmd FileType *           setlocal nospell
+    "" ...unless it is one of the following:
+    autocmd FileType gitcommit   setlocal spell
+    autocmd FileType mail        setlocal spell
+    autocmd FileType rst         setlocal spell
+    autocmd FileType txt         setlocal spell
+augroup END
 
 set nojoinspaces    " Do not insert double spaces.  After a peroid.
 set textwidth=78
-au FileType muttrc      set textwidth=0
-au FileType python      set textwidth=0
-au FileType sh          set textwidth=0
-au FileType sql         set textwidth=0
-au FileType vim         set textwidth=0
-au FileType xml         set textwidth=0
+augroup textwidth_local
+    autocmd!
+    autocmd FileType muttrc      setlocal textwidth=0
+    autocmd FileType python      setlocal textwidth=0
+    autocmd FileType sh          setlocal textwidth=0
+    autocmd FileType sql         setlocal textwidth=0
+    autocmd FileType vim         setlocal textwidth=0
+    autocmd FileType xml         setlocal textwidth=0
+augroup END
+
+" http://learnvimscriptthehardway.stevelosh.com/
+
+"echo '>^.^<'
+nnoremap - ddp
+nnoremap _ ddkP
+inoremap <c-u> <esc>viwUea
+nnoremap <c-u> viwUe
+
+source ~/.vim/personal.vim
