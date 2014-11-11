@@ -6,8 +6,10 @@ set expandtab
 set fenc=
 set fileencodings=utf8,latin2
 set formatoptions=tcq1j
+set incsearch
 set indentexpr=
 set modeline
+set mouse=a
 set nobackup
 set nocindent
 set nohlsearch
@@ -21,6 +23,7 @@ set softtabstop=4
 set tabstop=4
 set laststatus=2
 set statusline=%n\ %y\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set noequalalways
 nohlsearch
 
 augroup lang_local
@@ -107,5 +110,7 @@ nnoremap - ddp
 nnoremap _ ddkP
 inoremap <c-u> <esc>viwUea
 nnoremap <c-u> viwUe
+
+source ~/.vim/ez_scroll_mid.vim
 
 source ~/.vim/personal.vim
