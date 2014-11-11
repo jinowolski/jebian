@@ -69,12 +69,17 @@ augroup colors_local
     autocmd InsertLeave         *   match ExtraWhiteSpace /\s\+$/
 augroup END
 
-set cursorline
-set colorcolumn=79,80
 highlight CursorLine   cterm=NONE ctermbg=darkgrey guibg=lightgrey
 highlight CursorColumn cterm=NONE ctermbg=darkgrey guibg=lightgrey
 highlight ColorColumn  cterm=NONE ctermbg=darkgrey guibg=lightgrey
 
+augroup cursor_colors
+    autocmd!
+    autocmd FileType *           setlocal cursorline
+    autocmd FileType *           setlocal colorcolumn=79,80
+    autocmd FileType help        setlocal nocursorline
+    autocmd FileType help        setlocal colorcolumn=
+augroup END
 
 syn spell toplevel
 set spelllang=pl,en
