@@ -1,0 +1,20 @@
+#!/bin/bash
+echo "$1 $2 $3 $4" >> ~/.mcabber/eventcmd.log
+EVENT_TYPE=$1
+EVENT_SUBTYPE=$2
+JID=$3
+FILE=$4
+TITLE="   mcabber: new message from                 "
+#SOUND_FILE="$HOME/.mcabber/sounds/alert_47.wav"
+#ICON_OPT="-i $HOME/.mcabber/images/chat.png"
+TIMEOUT=10000
+
+new_message_in() {
+    notify-send $ICON_OPT -t $TIMEOUT "$TITLE" "   ${JID}   "
+#    aplay -d 2 $SOUND_FILE
+}
+
+if [ $EVENT_TYPE == "MSG" ] && [ $EVENT_SUBTYPE == "IN" ]
+then
+    new_message_in
+fi
