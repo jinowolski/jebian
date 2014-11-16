@@ -100,6 +100,7 @@ set nojoinspaces    " Do not insert double spaces.  After a peroid.
 set textwidth=78
 augroup textwidth_local
     autocmd!
+    autocmd FileType conf        setlocal textwidth=0
     autocmd FileType muttrc      setlocal textwidth=0
     autocmd FileType python      setlocal textwidth=0
     autocmd FileType sh          setlocal textwidth=0
