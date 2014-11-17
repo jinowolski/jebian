@@ -1,0 +1,13 @@
+;Include this file in the .gitconfig like:
+;[include]
+;    path = /home/jankiel/dotfiles/git/gitconfig
+
+[alias]
+	review = "!_review() { if [ -z \"$1\" ]; then REF=master; else REF=\"$1\"; fi; git push origin \"HEAD:refs/for/$REF\"; }; if ! git log -1 --pretty=%B | grep Change-Id; then git commit -C HEAD --amend; fi; _review"
+	draft = "!_draft() { if [ -z \"$1\" ]; then REF=master; else REF=\"$1\"; fi; git push origin \"HEAD:refs/drafts/$REF\"; }; if ! git log -1 --pretty=%B | grep Change-Id; then git commit -C HEAD --amend; fi; _draft"
+    ff = "!BRANCH=`git rev-parse --abbrev-ref HEAD`; git merge --ff-only origin/$BRANCH"
+	amend = commit --amend
+    amen = "commit -C HEAD --amend"
+    master = "checkout master"
+    lol = "log --oneline --decorate --graph"
+    hard = "reset --hard"
