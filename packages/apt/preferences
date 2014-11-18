@@ -1,0 +1,27 @@
+Package: texlive-fonts-recommended-doc
+Pin: release *
+Pin-priority: -100
+
+Package: texlive-latex-recommended-doc
+Pin: release *
+Pin-priority: -100
+
+Package: texlive-latex-base-doc
+Pin: release *
+Pin-priority: -100
+
+Package: texlive-latex-extra-doc
+Pin: release *
+Pin-priority: -100
+
+Package: texlive-pstricks-doc
+Pin: release *
+Pin-priority: -100
+
+Package: gnome-keyring
+Pin: release *
+Pin-priority: -100
+
+Package: gnome-bluetooth
+Pin: release *
+Pin-priority: -100

@@ -1,0 +1,7 @@
+build-essential
+ipython
+maven
+openjdk-7-jdk
+python
+ruby
+sphinx-doc
