@@ -1,4 +1,4 @@
-dotfiles
-========
+Jebian
+======
 
-My configuration files
+Jan's Debian configuration files
