@@ -4,4 +4,4 @@ maven
 openjdk-7-jdk
 python
 ruby
-sphinx-doc
+python-sphinx
