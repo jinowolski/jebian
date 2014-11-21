@@ -103,6 +103,7 @@ augroup textwidth_local
     autocmd FileType conf        setlocal textwidth=0
     autocmd FileType muttrc      setlocal textwidth=0
     autocmd FileType python      setlocal textwidth=0
+    autocmd FileType ruby        setlocal textwidth=0
     autocmd FileType sh          setlocal textwidth=0
     autocmd FileType sql         setlocal textwidth=0
     autocmd FileType vim         setlocal textwidth=0
