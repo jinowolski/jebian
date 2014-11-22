@@ -36,6 +36,7 @@ then
     naughty_command = %Q<naughty.notify({title="#{notification_title}", text="#{notification_text}", timeout=9, screen=#{notification_screen},>
     naughty_command += %Q<})>
 
+    sleep(3)
     IO::popen('awesome-client -', 'w'){|io| io << naughty_command}
 
 end
