@@ -72,14 +72,15 @@ xkb_symbols "editing" {
 	symbols[Group1]= [ Print, Sys_Req ]
     };
     key <SCLK> {  [  Scroll_Lock	]	};
-    key <PAUS> {
-	type= "PC_CONTROL_LEVEL2",
-	symbols[Group1]= [ Pause, Break ]
-    };
+//    key <PAUS> {
+//	type= "PC_CONTROL_LEVEL2",
+//	symbols[Group1]= [ Pause, Break ]
+//    };
     key  <INS> {	[  Insert		]	};
     key <HOME> {	[  Home			]	};
     key <PGUP> {	[  Prior		]	};
-    key <DELE> {	[  Delete		]	};
+//    key <DELE> {	[  Delete		]	};
+    key <PAUS> {	[  Delete		]	};
     key  <END> {	[  End			]	};
     key <PGDN> {	[  Next			]	};
 
