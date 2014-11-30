@@ -9,7 +9,7 @@ set formatoptions=tcq1j
 set incsearch
 set indentexpr=
 set modeline
-set mouse=a
+set mouse=ni
 set nobackup
 set nocindent
 set nohlsearch
