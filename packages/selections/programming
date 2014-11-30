@@ -6,3 +6,5 @@ python
 ruby
 python-sphinx
 libvirt-bin
+python-dev
+python-pip

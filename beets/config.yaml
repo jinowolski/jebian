@@ -1,0 +1,4 @@
+directory: ~/Music
+plugins: chroma bpm fromfilename echonest
+echonest:
+    upload: no
