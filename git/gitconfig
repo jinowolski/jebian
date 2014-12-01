@@ -11,3 +11,5 @@
     master = "checkout master"
     lol = "log --oneline --decorate --graph"
     hard = "reset --hard"
+    purr = "pull --rebase"
+    puff = "pull --ff-only"
