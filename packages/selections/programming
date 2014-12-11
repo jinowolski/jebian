@@ -4,6 +4,7 @@ maven
 openjdk-7-jdk
 python
 ruby
+ruby-dev
 python-sphinx
 libvirt-bin
 python-dev
