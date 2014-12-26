@@ -104,6 +104,7 @@ augroup textwidth_local
     autocmd FileType muttrc      setlocal textwidth=0
     autocmd FileType python      setlocal textwidth=0
     autocmd FileType ruby        setlocal textwidth=0
+    autocmd FileType eruby       setlocal textwidth=0
     autocmd FileType sh          setlocal textwidth=0
     autocmd FileType sql         setlocal textwidth=0
     autocmd FileType vim         setlocal textwidth=0
@@ -114,6 +115,9 @@ augroup rails
     autocmd FileType ruby       setlocal tabstop=2
     autocmd FileType ruby       setlocal shiftwidth=2
     autocmd FileType ruby       setlocal softtabstop=2
+    autocmd FileType eruby      setlocal tabstop=2
+    autocmd FileType eruby      setlocal shiftwidth=2
+    autocmd FileType eruby      setlocal softtabstop=2
 augroup END
 
 " http://learnvimscriptthehardway.stevelosh.com/
