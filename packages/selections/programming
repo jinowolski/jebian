@@ -11,3 +11,4 @@ python-dev
 python-pip
 nodejs
 poedit
+libsqlite3-dev
