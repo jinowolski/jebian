@@ -1,0 +1,3 @@
+Include this directory to the .bashrc file:
+
+    source /path/to/bashrc/main.sh
