@@ -45,7 +45,7 @@ set sig_on_top          = yes
 # IMAP connection settings
 set timeout             = 10
 set mail_check          = 10
-set imap_keepalive      = 300
+set imap_keepalive      = 30
 
 # IMAP account settings
 set folder              = imaps://imap.gmail.com/
