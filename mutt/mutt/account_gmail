@@ -1,0 +1,16 @@
+# IMAP account settings
+set folder              = imaps://imap.gmail.com/
+set spoolfile           = +INBOX
+set record              = +INBOX
+set postponed           = "+[Gmail]/Drafts"
+set trash               = "imaps://imap.gmail.com/[Gmail]/All Mail"
+set maildir_trash       = yes
+
+set signature           = ~/.mutt/signature_gmail
+set sig_on_top          = yes
+
+# use headercache for IMAP (make sure this is a directory for performance!)
+set header_cache        = ~/.mutt/header_cache/gmail
+set message_cachedir    = ~/.mutt/bodies_cache/gmail
+
+source                  ~/.mutt/account_gmail.personal
