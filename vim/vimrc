@@ -111,6 +111,7 @@ augroup textwidth_local
     autocmd FileType sql         setlocal textwidth=0
     autocmd FileType vim         setlocal textwidth=0
     autocmd FileType xml         setlocal textwidth=0
+    autocmd FileType yaml        setlocal textwidth=0
 augroup END
 
 augroup rails
