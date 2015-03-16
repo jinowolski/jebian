@@ -462,6 +462,10 @@ os.execute(table.concat(execute, ";"))
 --run_once("nm-applet")
 --run_once("skype")
 --
+--
+awful.util.spawn_with_shell("xrandr --output DP-1 --mode 1920x1200")
+awful.util.spawn_with_shell("xrandr --output DP-2 --right-of DP-1 --rotate left --mode 1280x1024")
+awful.util.spawn_with_shell("setxkbmap pl")
 awful.util.spawn_with_shell("xscreensaver -no-splash")
 --awful.util.spawn_with_shell("xfsettingsd")
 awful.util.spawn_with_shell("gnome-settings-daemon")
