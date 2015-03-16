@@ -1,0 +1,10 @@
+---
+- name: setup apt preferences
+  copy:
+    src: preferences
+    dest: /etc/apt/preferences
+    mode: 0644
+  register: apt_preferences
+- name: update apt repositories
+  apt: update_cache=yes
+  when: apt_preferences.changed

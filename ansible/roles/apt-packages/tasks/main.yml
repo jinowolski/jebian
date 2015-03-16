@@ -1,0 +1,164 @@
+---
+- name: install debian-dev packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - debhelper
+    - devscripts
+    - dh-make
+- name: install dictionary packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - aspell-en
+    - aspell-pl
+    - hunspell-en-us
+    - myspell-pl
+- name: install font packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - fonts-liberation
+    - ttf-liberation
+    - ttf-mscorefonts-installer
+- name: install main packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - alsa-utils
+    - anacron
+    - apache2
+    - apache2-mpm-itk
+    - cups-client
+    - etckeeper
+    - evince
+    - git
+    - git-svn
+    - iptables
+    - keychain
+    - network-manager
+    - network-manager-gnome
+    - ntp
+    - ntp
+    - openssh-server
+    - openvpn
+    - pm-utils
+    - preload
+    - pulseaudio
+    - subversion
+    - sudo
+    - tig
+    - vim
+    - vim-gtk
+    - wine
+    - xscreensaver
+- name: install multimedia packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - acoustid-fingerprinter
+    - audacity
+    - cmus
+    - easytag
+    - faad
+    - gimp
+    - imagemagick
+    - lame
+    - libav-tools
+    - mypaint
+    - vlc
+- name: install office packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - abook
+    - chromium
+    - gnuplot
+    - graphviz
+    - hamster-applet
+    - libreoffice
+    - links
+    - mcabber
+    - mutt
+    - mutt-patched
+    - texlive
+    - texlive-latex-extra
+- name: install programming packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - build-essential
+    - ipython
+    - libsqlite3-dev
+    - libvirt-bin
+    - maven
+    - nodejs
+    - openjdk-7-jdk
+    - poedit
+    - python
+    - python-dev
+    - python-pip
+    - python-sphinx
+    - ruby
+    - ruby-dev
+- name: install screencasting packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - byzanz
+    - key-mon
+    - vokoscreen
+- name: install shell packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - bash
+    - bash-completion
+    - screen
+- name: install utility packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - ansible
+    - apg
+    - bar
+    - dos2unix
+    - grc
+    - htop
+    - iotop
+    - keepassx
+    - less
+    - lsof
+    - mc
+    - mlocate
+    - ncdu
+    - p7zip
+    - p7zip-full
+    - pigz
+    - psmisc
+    - rfkill
+    - rlwrap
+    - rsync
+    - time
+    - whois
+    - zip
+- name: install X packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - awesome
+    - awesome-extra
+    - lightdm
+    - notification-daemon
+    - roxterm
