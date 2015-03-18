@@ -384,25 +384,16 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 
 
 local execute = {
-    --ustawienie przed instalacja nvidii
---    "xrandr --output DP-1 --mode 1920x1200",
---    "xrandr --output DP-2 --mode 1280x1024 --right-of DP-1 --rotate left",
-    --ustawienie dla nvidii
-    "xrandr --output DP-3 --mode 1280x1024 --right-of DP-2 --rotate left",
-    -- Start PulseAudio
     "pulseaudio --check || pulseaudio -D",
     "xset -b", -- Disable bell
-    -- Enable numlock
     "numlockx on"
-    -- Read resources
---    "xrdb -merge " .. awful.util.getdir("config") .. "/Xresources",
---    -- Default browser
---    "xdg-mime default " .. config.browser .. ".desktop x-scheme-handler/http",
---    "xdg-mime default " .. config.browser .. ".desktop x-scheme-handler/https",
---    "xdg-mime default " .. config.browser .. ".desktop text/html"
 }
 
-os.execute(table.concat(execute, ";"))
+local execute_qwerty = {
+    "xrandr --output DP-1 --mode 1920x1200",
+    "xrandr --output DP-2 --mode 1280x1024 --right-of DP-1 --rotate left",
+}
+
 
 --function run_once(prg,arg_string,pname,screen)
 --	if not prg then
@@ -463,11 +454,13 @@ os.execute(table.concat(execute, ";"))
 --run_once("skype")
 --
 --
-awful.util.spawn_with_shell("xrandr --output DP-1 --mode 1920x1200")
-awful.util.spawn_with_shell("xrandr --output DP-2 --right-of DP-1 --rotate left --mode 1280x1024")
+os.execute(table.concat(execute, ";"))
+host = string.gsub(awful.util.pread("hostname"),"%s+", "")
+if host == "qwerty" then
+    os.execute(table.concat(execute_qwerty, ";"))
+end
 awful.util.spawn_with_shell("setxkbmap pl")
 awful.util.spawn_with_shell("xscreensaver -no-splash")
---awful.util.spawn_with_shell("xfsettingsd")
 awful.util.spawn_with_shell("gnome-settings-daemon")
 awful.util.spawn_with_shell("xfce4-volumed")
 awful.util.spawn_with_shell("nm-applet")
