@@ -1,5 +1,5 @@
 ---
 apt_mirror: "http://ftp.icm.edu.pl/pub/Linux/debian/"
-apt_dist: "wheezy"
+apt_dist: "jessie"
 apt_categories: "main contrib non-free"
 apt_backports: yes
