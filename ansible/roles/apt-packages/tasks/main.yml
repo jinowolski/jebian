@@ -106,6 +106,8 @@
     - python-dev
     - python-pip
     - python-sphinx
+    - python3
+    - python3-dev
     - ruby
     - ruby-dev
 - name: install screencasting packages

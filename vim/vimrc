@@ -103,6 +103,7 @@ augroup textwidth_local
     autocmd FileType conf        setlocal textwidth=0
     autocmd FileType eruby       setlocal textwidth=0
     autocmd FileType html        setlocal textwidth=0
+    autocmd FileType htmldjango  setlocal textwidth=0
     autocmd FileType muttrc      setlocal textwidth=0
     autocmd FileType pascal      setlocal textwidth=0
     autocmd FileType php         setlocal textwidth=0
