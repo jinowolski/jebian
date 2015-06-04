@@ -69,9 +69,9 @@ augroup colors_local
     autocmd InsertLeave         *   match ExtraWhiteSpace /\s\+$/
 augroup END
 
-highlight CursorLine   cterm=NONE ctermbg=darkgrey guibg=lightgrey
-highlight CursorColumn cterm=NONE ctermbg=darkgrey guibg=lightgrey
-highlight ColorColumn  cterm=NONE ctermbg=darkgrey guibg=lightgrey
+highlight CursorLine   cterm=NONE ctermbg=234 guibg=lightgrey
+highlight CursorColumn cterm=NONE ctermbg=234 guibg=lightgrey
+highlight ColorColumn  cterm=NONE ctermbg=234 guibg=lightgrey
 
 augroup cursor_colors
     autocmd!
@@ -79,9 +79,13 @@ augroup cursor_colors
     autocmd FileType *           setlocal colorcolumn=79,80
     autocmd FileType help        setlocal nocursorline
     autocmd FileType help        setlocal colorcolumn=
+    autocmd FileType markdown    setlocal nocursorline
+    autocmd FileType markdown    setlocal colorcolumn=
 augroup END
 
 syn spell toplevel
+highlight clear SpellBad
+highlight SpellBad ctermbg=red
 set spelllang=pl,en
 "" Enable spell checking for any unknown filetype
 set spell
@@ -100,6 +104,7 @@ set nojoinspaces    " Do not insert double spaces.  After a peroid.
 set textwidth=78
 augroup textwidth_local
     autocmd!
+    autocmd FileType cfg         setlocal textwidth=0
     autocmd FileType conf        setlocal textwidth=0
     autocmd FileType eruby       setlocal textwidth=0
     autocmd FileType html        setlocal textwidth=0
