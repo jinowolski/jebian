@@ -1,50 +1,85 @@
-syntax on
-set autoindent
-set backspace=indent,eol,start
-set comments=s1:/*,mb:*,ex:*/,://,:%,:XCOMM,n:>,fb:-,fb:*,fb:#
-set expandtab
-set fenc=
-set fileencodings=utf8,latin2
-set formatoptions=tcq1j
-set incsearch
-set indentexpr=
-set modeline
-set mouse=ni
-set nobackup
+" Indentation
+" ===========
+
+" Reset indentation options
+set nosmartindent
 set nocindent
-set nohlsearch
-set nowritebackup
-set ruler
+set indentexpr=
+
+" Copy indentation from the previous line
+set nocopyindent     " disable dummy 'copy-and-leave-as-is' algorithm
+set autoindent       " enable algorithm that clears empty lines
+set nopreserveindent " do not copy tab/space structure from previous line
+
+" Use spaces instead of tabs
+set expandtab
+
+" Use 4-space indentation
+set shiftwidth=4  " number of spaces for each (auto)indent
+set softtabstop=4 " number of spaces inserted on each tab-key hit
+" See also 'tabstop' option in the 'Display' section.
+
+" Round indent to multiple of shiftwidth for '<' and '>' commands
 set shiftround
-set shiftwidth=4
-set showcmd
-set showmode
-set softtabstop=4
-set tabstop=4
-set laststatus=2
-set statusline=%n\ %y\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-set noequalalways
-nohlsearch
 
-augroup lang_local
-    autocmd!
-    autocmd BufEnter            *.html  setlocal indentexpr=
-    autocmd BufNewFile,BufRead  *.py    setlocal ai
-    autocmd BufNewFile,BufRead  *.py    setlocal ts=4
-    autocmd BufNewFile,BufRead  *.py    setlocal sts=4
-    autocmd BufNewFile,BufRead  *.py    setlocal et
-    autocmd BufNewFile,BufRead  *.py    setlocal sw=4
-    autocmd BufNewFile,BufRead  *.py    setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-    autocmd BufWritePre         *.py    1,$s/\s\+$//e
 
-    autocmd FileType python             setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType javascript         setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType html               setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType css                setlocal omnifunc=csscomplete#CompleteCSS
+" Editing text
+" ============
 
-    autocmd FileType make               setlocal noexpandtab
-augroup END
+" Allow backspace through indentation, back to previous line (join lines),
+" before the start of the insert
+set backspace=indent,eol,start
 
+" Handle comments and bullet lists while auto-formatting (gq).
+" These settings are meant to be used in the ordinary text files. They could
+" be overridden for individual code languages.
+"
+" /*
+"  * multi-line C comments
+"  * break line repeating '*'
+"  */
+"
+" // C comments
+" // break line repeating '//'
+"
+" % LaTeX comments
+" % break line repeating '%'
+"
+" > mail quotes
+" > > keep level while
+" > > breaking lines
+"
+" - unordered dash list
+"   do not repeat '-' sign
+"
+" * unordered asterisk list
+"   do not repeat '*' sign
+"
+" # unordered hash list
+"   do not repeat '#' sign
+set comments=s1:/*,mb:*,ex:*/,://,:%,n:>,fb:-,fb:*,fb:#
+
+
+" How auto-formatter (gq) behaves:
+" t - auto-wrap text using textwidth
+" c - auto-wrap comments using textwidth (see 'comments' option)
+" q - allow formatting comments
+" 1 - do not break a line after a
+"     one-letter word
+" j - join comment lines when applicable
+set formatoptions=tcq1j
+
+" Do not insert double spaces.  After a period.
+set nojoinspaces
+
+" Use 78-char line width for any unknown file type
+set textwidth=78
+autocmd FileType * set textwidth=0
+
+" Show autocompletion as a menu
+set completeopt=menu
+
+" Trigger autocompletion on Ctrl+Space
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 \ "\<lt>C-n>" :
 \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
@@ -52,76 +87,198 @@ inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
 imap <C-@> <C-Space>
 
-set completeopt=longest,menuone
-"inoremap <Nul> <C-x><C-o>
-"autocmd FileType python python
-highlight PmenuSel ctermbg=green gui=bold
 
+" Display
+" =======
 
-" highlight trailing whitespace
-highlight ExtraWhitespace ctermbg=red guibg=red
+" Display single tab as 8 spaces
+set tabstop=8
 
-augroup colors_local
+" Assume plain text file by default (no highlighting)
+set fenc=
+" But just when file type is known, enable highlighting
+syntax on
+
+" Do not highlight found search terms by default
+set nohlsearch
+nohlsearch
+
+" Show matching pattern while typing search term
+set incsearch
+
+" Show line and column number
+set ruler
+" Show incomplete command while typing
+set showcmd
+" Show editor mode
+set showmode
+" Show statusline even for a single window
+set laststatus=2
+
+" Statusline content
+" %n - buffer number
+" %y - [file type]
+" %< - (truncate from here to the right if a line is too long
+"      - usually file name is more interesting than file path)
+" %f - file name and its path relative to current directory
+" %h - [Help] flag, if this is help window
+" %m - [+] modified flag or [-] modification disabled flag
+" %r - [RO] readonly flag
+" %= - (separation between left and right statusline side)
+" %-14.( - justify left (-), minimum 14 characters long, maximum unbounded (14.)
+"   %l - line number
+"   %c - column number
+"   %V - virtual column number (byte number) if different than column number
+" %) -
+" %P - percentage through file (of displayed window, not of current line)
+set statusline=%n\ %y\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+" Do not make all windows the same size after splitting or closing window
+set noequalalways
+
+" Show whitespace at the end of a line, but do not show extra whitespace while
+" editing line
+augroup colors_extrawhitespce
     autocmd!
-    autocmd ColorScheme         *   highlight ExtraWhitespace guibg=red
     autocmd BufEnter            *   match ExtraWhitespace /\s\+$/
     autocmd InsertEnter         *   match ExtraWhitespace /\s\+\%#\@<!$/
     autocmd InsertLeave         *   match ExtraWhiteSpace /\s\+$/
 augroup END
 
-highlight CursorLine   cterm=NONE ctermbg=234 guibg=lightgrey
-highlight CursorColumn cterm=NONE ctermbg=234 guibg=lightgrey
-highlight ColorColumn  cterm=NONE ctermbg=234 guibg=lightgrey
+" Highlight cursor line
+set cursorline
 
-augroup cursor_colors
+" Highlight 80-column margin
+set colorcolumn=79,80
+
+" Use polish and english dictionaries for spell checking
+set spelllang=pl,en
+
+"" Enable spell checking for any unknown filetype
+set spell
+autocmd FileType * setlocal nospell
+
+
+" Mouse
+" =====
+
+" Scroll with a mouse wheel
+source ~/.vim/ez_scroll_mid.vim
+
+
+" Colors
+" ======
+
+" There settings are in use only when specific highlight is enabled
+highlight ExtraWhitespace               ctermbg=red
+highlight CursorLine        cterm=NONE  ctermbg=234                 guibg=lightgrey
+highlight CursorColumn      cterm=NONE  ctermbg=234                 guibg=lightgrey
+highlight ColorColumn       cterm=NONE  ctermbg=234                 guibg=lightgrey
+highlight PmenuSel                      ctermbg=green
+highlight SpellBad                      ctermbg=red
+
+" File handling
+" =============
+
+" Try reading file as latin2 if utf8 failed
+set fileencodings=utf8,latin2
+
+" Do not create permanent backup file
+set nobackup
+" Use temporary backup file during overwriting existing file
+set writebackup
+
+
+" Filetype specific settings
+" ==========================
+
+" Python
+" ------
+augroup filetype_python
     autocmd!
-    autocmd FileType *           setlocal cursorline
-    autocmd FileType *           setlocal colorcolumn=79,80
-    autocmd FileType help        setlocal nocursorline
-    autocmd FileType help        setlocal colorcolumn=
+
+    " Indent line after python keywords
+    autocmd FileType python     setlocal smartindent
+    autocmd FileType python     setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+    " Remove trailing whitespace before writing a file
+    autocmd BufWritePre *.py    1,$s/\s\+$//e
+augroup END
+
+
+" Makefile
+" --------
+augroup filetype_make
+    autocmd!
+
+    " Do not replace tabs with spaces
+    autocmd FileType make               setlocal noexpandtab
+
+    " Use 8 character indentation
+    autocmd FileType make               setlocal shiftwidth=8
+    autocmd FileType make               setlocal softtabstop=8
+augroup END
+
+
+" Markdown
+" --------
+augroup filetype_markdown
+    autocmd!
+
     autocmd FileType markdown    setlocal nocursorline
     autocmd FileType markdown    setlocal colorcolumn=
 augroup END
 
-syn spell toplevel
-highlight clear SpellBad
-highlight SpellBad ctermbg=red
-set spelllang=pl,en
-"" Enable spell checking for any unknown filetype
-set spell
-augroup spell_local
+" Vim help
+" --------
+augroup filetype_help
     autocmd!
-    "" Disable spell checking for any known filetype...
-    autocmd FileType *           setlocal nospell
-    "" ...unless it is one of the following:
+
+    autocmd FileType help        setlocal nocursorline
+    autocmd FileType help        setlocal colorcolumn=
+augroup END
+
+" Git commit
+" ----------
+augroup filetype_gitcommit
+    autocmd!
+
     autocmd FileType gitcommit   setlocal spell
-    autocmd FileType mail        setlocal spell
-    autocmd FileType rst         setlocal spell
-    autocmd FileType txt         setlocal spell
+    autocmd FileType gitcommit   set textwidth=78
 augroup END
 
-set nojoinspaces    " Do not insert double spaces.  After a peroid.
-set textwidth=78
-augroup textwidth_local
+" Mail
+" ----
+augroup filetype_mail
     autocmd!
-    autocmd FileType cfg         setlocal textwidth=0
-    autocmd FileType conf        setlocal textwidth=0
-    autocmd FileType eruby       setlocal textwidth=0
-    autocmd FileType html        setlocal textwidth=0
-    autocmd FileType htmldjango  setlocal textwidth=0
-    autocmd FileType muttrc      setlocal textwidth=0
-    autocmd FileType pascal      setlocal textwidth=0
-    autocmd FileType php         setlocal textwidth=0
-    autocmd FileType python      setlocal textwidth=0
-    autocmd FileType ruby        setlocal textwidth=0
-    autocmd FileType sh          setlocal textwidth=0
-    autocmd FileType sql         setlocal textwidth=0
-    autocmd FileType vim         setlocal textwidth=0
-    autocmd FileType xml         setlocal textwidth=0
-    autocmd FileType yaml        setlocal textwidth=0
+
+    autocmd FileType mail   setlocal spell
+    autocmd FileType mail   set textwidth=78
 augroup END
 
-augroup rails
+" reStructuredText
+" ----
+augroup filetype_rst
+    autocmd!
+
+    autocmd FileType rst   setlocal spell
+    autocmd FileType rst   set textwidth=78
+augroup END
+
+" Plain text
+" ----
+augroup filetype_txt
+    autocmd!
+
+    autocmd FileType txt   setlocal spell
+    autocmd FileType txt   set textwidth=78
+augroup END
+
+" Ruby
+" ----
+augroup filetype_ruby
+    autocmd!
+
     autocmd FileType ruby       setlocal tabstop=2
     autocmd FileType ruby       setlocal shiftwidth=2
     autocmd FileType ruby       setlocal softtabstop=2
@@ -130,14 +287,7 @@ augroup rails
     autocmd FileType eruby      setlocal softtabstop=2
 augroup END
 
-" http://learnvimscriptthehardway.stevelosh.com/
-
-"echo '>^.^<'
-nnoremap - ddp
-nnoremap _ ddkP
-inoremap <c-u> <esc>viwUea
-nnoremap <c-u> viwUe
-
-source ~/.vim/ez_scroll_mid.vim
-
-source ~/.vim/personal.vim
+" personal settings, not included in the repository
+if filereadable("~/.vim/personal.vim")
+    source ~/.vim/personal.vim
+endif
