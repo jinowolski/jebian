@@ -1,4 +1,52 @@
 ---
+- name: install shell packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - bash
+    - bash-completion
+    - screen
+- name: install utility packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - ansible
+    - apg
+    - bar
+    - dos2unix
+    - grc
+    - htop
+    - hwinfo
+    - iotop
+    - keepassx
+    - less
+    - lsof
+    - mc
+    - mlocate
+    - mtr
+    - ncdu
+    - p7zip
+    - p7zip-full
+    - pigz
+    - psmisc
+    - rfkill
+    - rlwrap
+    - rsync
+    - time
+    - whois
+    - zip
+- name: install X packages
+  apt:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - awesome
+    - awesome-extra
+    - lightdm
+    - notification-daemon
+    - gnome-terminal
 - name: install debian-dev packages
   apt:
     name: "{{ item }}"
@@ -118,49 +166,3 @@
     - byzanz
     - key-mon
     - vokoscreen
-- name: install shell packages
-  apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - bash
-    - bash-completion
-    - screen
-- name: install utility packages
-  apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - ansible
-    - apg
-    - bar
-    - dos2unix
-    - grc
-    - htop
-    - iotop
-    - keepassx
-    - less
-    - lsof
-    - mc
-    - mlocate
-    - ncdu
-    - p7zip
-    - p7zip-full
-    - pigz
-    - psmisc
-    - rfkill
-    - rlwrap
-    - rsync
-    - time
-    - whois
-    - zip
-- name: install X packages
-  apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - awesome
-    - awesome-extra
-    - lightdm
-    - notification-daemon
-    - roxterm
