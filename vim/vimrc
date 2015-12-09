@@ -227,6 +227,8 @@ augroup filetype_markdown
 
     autocmd FileType markdown    setlocal nocursorline
     autocmd FileType markdown    setlocal colorcolumn=
+    autocmd FileType markdown    setlocal spell
+    autocmd FileType markdown    setlocal textwidth=78
 augroup END
 
 " Vim help
@@ -244,7 +246,7 @@ augroup filetype_gitcommit
     autocmd!
 
     autocmd FileType gitcommit   setlocal spell
-    autocmd FileType gitcommit   set textwidth=78
+    autocmd FileType gitcommit   setlocal textwidth=78
 augroup END
 
 " Mail
@@ -253,7 +255,7 @@ augroup filetype_mail
     autocmd!
 
     autocmd FileType mail   setlocal spell
-    autocmd FileType mail   set textwidth=78
+    autocmd FileType mail   setlocal textwidth=78
 augroup END
 
 " reStructuredText
@@ -262,7 +264,7 @@ augroup filetype_rst
     autocmd!
 
     autocmd FileType rst   setlocal spell
-    autocmd FileType rst   set textwidth=78
+    autocmd FileType rst   setlocal textwidth=78
 augroup END
 
 " Plain text
@@ -271,7 +273,7 @@ augroup filetype_txt
     autocmd!
 
     autocmd FileType txt   setlocal spell
-    autocmd FileType txt   set textwidth=78
+    autocmd FileType txt   setlocal textwidth=78
 augroup END
 
 " Ruby
