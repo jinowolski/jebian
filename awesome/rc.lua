@@ -37,15 +37,14 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/theme.lua")
+
+
+awesome.font = "sans-serif 18"
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"
---editor = os.getenv("EDITOR") or "editor"
---editor_cmd = terminal .. " -e " .. editor
-
---terminal = "xterm"
-editor = "vim"
+editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -58,18 +57,18 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     awful.layout.suit.floating,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
+--    awful.layout.suit.fair,
+--    awful.layout.suit.fair.horizontal,
+--    awful.layout.suit.spiral,
+--    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+    awful.layout.suit.max.fullscreen
+--    awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -153,6 +152,19 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
+-- Create an ACPI widget
+batterywidget = widget({ type = "textbox" })
+batterywidget.text = " | Battery | "
+batterywidgettimer = timer({ timeout = 5 })
+batterywidgettimer:add_signal("timeout",
+  function()
+    fh = assert(io.popen("acpi | cut -d, -f 2,3 -", "r"))
+    batterywidget.text = " |" .. fh:read("*l") .. " | "
+    fh:close()
+  end
+)
+batterywidgettimer:start()
+
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -173,7 +185,7 @@ for s = 1, screen.count() do
                                           end, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height=40, screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
@@ -185,6 +197,7 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         mytextclock,
         s == 1 and mysystray or nil,
+        batterywidget,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }
@@ -257,7 +270,6 @@ globalkeys = awful.util.table.join(
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end),
---    awful.key({ modkey }, "F12", function () awful.util.spawn("i3lock -c 000000") end)
     awful.key({ modkey }, "F12", function () awful.util.spawn("xscreensaver-command --lock") end)
 )
 
@@ -382,85 +394,9 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-
-local execute = {
-    "pulseaudio --check || pulseaudio -D",
-    "xset -b", -- Disable bell
-    "numlockx on"
-}
-
-local execute_qwerty = {
-    "xrandr --output DP-1 --mode 1920x1200",
-    "xrandr --output DP-2 --mode 1280x1024 --right-of DP-1 --rotate left",
-}
-
-
---function run_once(prg,arg_string,pname,screen)
---	if not prg then
---		do return nil end
---	end
---
---	if not pname then
---		pname = prg
---	end
---
---	if not arg_string then
---		awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
---	else
---		awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. " " .. arg_string .. ")",screen)
---	end
---end
-
---require("lfs")
----- {{{ Run programm once
---local function processwalker()
---   local function yieldprocess()
---      for dir in lfs.dir("/proc") do
---        -- All directories in /proc containing a number, represent a process
---        if tonumber(dir) ~= nil then
---          local f, err = io.open("/proc/"..dir.."/cmdline")
---          if f then
---            local cmdline = f:read("*all")
---            f:close()
---            if cmdline ~= "" then
---              coroutine.yield(cmdline)
---            end
---          end
---        end
---      end
---    end
---    return coroutine.wrap(yieldprocess)
---end
---
---local function run_once(process, cmd)
---   assert(type(process) == "string")
---   local regex_killer = {
---      ["+"]  = "%+", ["-"] = "%-",
---      ["*"]  = "%*", ["?"]  = "%?" }
---
---   for p in processwalker() do
---      if p:find(process:gsub("[-+?*]", regex_killer)) then
---     return
---      end
---   end
---   return awful.util.spawn_with_shell(cmd or process)
---end
----- }}}
-
---run_once("xscreensaver", "-no-splash")
---run_once("xfsettingsd")
---run_once("xfce4-volumed")
---run_once("nm-applet")
---run_once("skype")
---
---
-os.execute(table.concat(execute, ";"))
-host = string.gsub(awful.util.pread("hostname"),"%s+", "")
-if host == "qwerty" then
-    os.execute(table.concat(execute_qwerty, ";"))
-end
 awful.util.spawn_with_shell("setxkbmap pl")
 awful.util.spawn_with_shell("xscreensaver -no-splash")
 awful.util.spawn_with_shell("gnome-settings-daemon")
 awful.util.spawn_with_shell("xfce4-volumed")
 awful.util.spawn_with_shell("nm-applet")
+
