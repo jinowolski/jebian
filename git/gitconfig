@@ -13,3 +13,6 @@
     hard = "reset --hard"
     purr = "pull --rebase"
     puff = "pull --ff-only"
+
+[push]
+	default = simple
