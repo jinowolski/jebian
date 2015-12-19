@@ -7,3 +7,5 @@ source $DIR/bash.sh
 source $DIR/ps1.sh
 source $DIR/nobell.sh
 source $DIR/autovirtualenv.sh
+source $DIR/pipcache.sh
+source $DIR/aliases.sh
