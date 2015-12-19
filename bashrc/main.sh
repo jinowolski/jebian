@@ -6,3 +6,4 @@ source $DIR/colors.sh
 source $DIR/bash.sh
 source $DIR/ps1.sh
 source $DIR/nobell.sh
+source $DIR/autovirtualenv.sh
