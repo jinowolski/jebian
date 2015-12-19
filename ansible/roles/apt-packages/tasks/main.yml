@@ -35,6 +35,7 @@
     - rlwrap
     - rsync
     - time
+    - vpnc
     - whois
     - zip
 - name: install X packages
@@ -94,6 +95,7 @@
     - ntp
     - openssh-server
     - openvpn
+    - pavucontrol
     - pm-utils
     - preload
     - pulseaudio
@@ -126,6 +128,7 @@
     state: installed
   with_items:
     - abook
+    - biber
     - chromium
     - gnuplot
     - graphviz
@@ -136,6 +139,9 @@
     - mutt
     - mutt-patched
     - texlive
+    - texlive-bibtex-extra
+    - texlive-fonts-extra
+    - texlive-lang-polish
     - texlive-latex-extra
 - name: install programming packages
   apt:
@@ -144,6 +150,7 @@
   with_items:
     - build-essential
     - ipython
+    - java-package
     - libsqlite3-dev
     - libvirt-bin
     - maven
@@ -158,6 +165,7 @@
     - python3-dev
     - ruby
     - ruby-dev
+    - virtualenv
 - name: install screencasting packages
   apt:
     name: "{{ item }}"
