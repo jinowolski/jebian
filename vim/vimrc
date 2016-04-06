@@ -158,6 +158,12 @@ set spelllang=pl,en
 set spell
 autocmd FileType * setlocal nospell
 
+" Correct highting in XML documents. Check spelling outside syntax items.
+syntax spell toplevel
+
+" Do not highlight uncapitalized first word after a period. like here
+set spellcapcheck=
+
 
 " Mouse
 " =====
@@ -176,6 +182,7 @@ highlight CursorColumn      cterm=NONE  ctermbg=234                 guibg=lightg
 highlight ColorColumn       cterm=NONE  ctermbg=234                 guibg=lightgrey
 highlight PmenuSel                      ctermbg=green
 highlight SpellBad                      ctermbg=red
+highlight Search            cterm=NONE  ctermbg=58
 
 " File handling
 " =============
@@ -204,7 +211,6 @@ augroup filetype_python
     " Remove trailing whitespace before writing a file
     autocmd BufWritePre *.py    1,$s/\s\+$//e
 augroup END
-
 
 " Makefile
 " --------
