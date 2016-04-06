@@ -337,5 +337,15 @@ nnoremap _ ddkP
 inoremap <c-u> <esc>viwUea
 nnoremap <c-u> viwUe
 
+" leader
+let mapleader="\<Space>"
+" fast clipboard access
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+
 source ~/.vim/ez_scroll_mid.vim
 
