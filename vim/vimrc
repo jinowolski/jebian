@@ -282,6 +282,14 @@ augroup filetype_txt
     autocmd FileType txt   setlocal textwidth=78
 augroup END
 
+" Jinja2 templates
+" ----
+augroup filetype_jinja2
+    autocmd!
+
+    autocmd BufEnter,BufNew *.j2 setlocal textwidth=0
+augroup END
+
 " LaTeX files
 " ----
 augroup filetype_tex
@@ -308,3 +316,26 @@ augroup END
 if filereadable("~/.vim/personal.vim")
     source ~/.vim/personal.vim
 endif
+
+augroup yaml
+    autocmd FileType yaml      setlocal tabstop=2
+    autocmd FileType yaml      setlocal shiftwidth=2
+    autocmd FileType yaml      setlocal softtabstop=2
+augroup END
+
+augroup html
+    autocmd FileType html       setlocal tabstop=2
+    autocmd FileType html       setlocal shiftwidth=2
+    autocmd FileType html       setlocal softtabstop=2
+augroup END
+
+" http://learnvimscriptthehardway.stevelosh.com/
+
+"echo '>^.^<'
+nnoremap - ddp
+nnoremap _ ddkP
+inoremap <c-u> <esc>viwUea
+nnoremap <c-u> viwUe
+
+source ~/.vim/ez_scroll_mid.vim
+
