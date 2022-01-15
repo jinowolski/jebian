@@ -1,10 +1,10 @@
 ---
 - hosts: localhost
   connection: local
-  sudo: yes
+  become: yes
+  become_user: root
   roles:
     - apt
     - apt-preferences
     - apt-packages
-    - gem-packages
-    - pip-packages
+    - docker

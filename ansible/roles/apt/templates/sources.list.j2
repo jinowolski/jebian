@@ -1,8 +1,6 @@
 deb {{ apt_mirror }} {{ apt_dist }} {{ apt_categories }}
-deb http://security.debian.org/ {{ apt_dist }}/updates main
-
-# {{ apt_dist }}-updates, previously known as 'volatile'
 deb {{ apt_mirror }} {{ apt_dist }}-updates {{ apt_categories }}
+deb http://security.debian.org/debian-security {{ apt_dist }}-security main
 
 {% if apt_backports %}
 deb {{ apt_mirror }} {{ apt_dist }}-backports {{ apt_categories }}

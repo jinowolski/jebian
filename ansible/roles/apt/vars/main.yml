@@ -1,5 +1,5 @@
 ---
-apt_mirror: "http://ftp.icm.edu.pl/pub/Linux/debian/"
-apt_dist: "jessie"
+apt_mirror: "http://ftp.pl.debian.org/debian/"
+apt_dist: "bullseye"
 apt_categories: "main contrib non-free"
 apt_backports: yes

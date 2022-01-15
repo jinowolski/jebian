@@ -1,176 +1,93 @@
 ---
 - name: install shell packages
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - bash
-    - bash-completion
-    - screen
+    name:
+      - bash
+      - bash-completion
+      - screen
+    state: present
 - name: install utility packages
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - ansible
-    - apg
-    - bar
-    - dos2unix
-    - grc
-    - htop
-    - hwinfo
-    - iotop
-    - keepassx
-    - less
-    - lsof
-    - mc
-    - mlocate
-    - mtr
-    - ncdu
-    - p7zip
-    - p7zip-full
-    - pigz
-    - psmisc
-    - rfkill
-    - rlwrap
-    - rsync
-    - time
-    - vpnc
-    - whois
-    - zip
-- name: install X packages
-  apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - awesome
-    - awesome-extra
-    - lightdm
-    - notification-daemon
-    - gnome-terminal
+    name:
+      - ansible
+      - apg
+      - bar
+      - ca-certificates
+      - curl
+      - dos2unix
+      - gnupg2
+      - grc
+      - htop
+      - hwinfo
+      - iotop
+      - less
+      - lsof
+      - mc
+      - mlocate
+      - mtr
+      - ncdu
+      - openssh-client
+      - p7zip
+      - p7zip-full
+      - pigz
+      - psmisc
+      - rfkill
+      - rlwrap
+      - rsync
+      - time
+      - whois
+      - zip
+    state: present
 - name: install debian-dev packages
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - debhelper
-    - devscripts
-    - dh-make
+    name:
+      - debhelper
+      - devscripts
+      - dh-make
+    state: present
 - name: install dictionary packages
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - aspell-en
-    - aspell-pl
-    - hunspell-en-us
-    - myspell-pl
+    name:
+      - aspell-en
+      - aspell-pl
+      - hunspell-en-us
+      - myspell-pl
+    state: present
 - name: install font packages
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - fonts-liberation
-    - ttf-liberation
-    - ttf-mscorefonts-installer
+    name:
+      - fonts-liberation2
+      - ttf-mscorefonts-installer
+    state: present
 - name: install main packages
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - alsa-utils
-    - anacron
-    - apache2
-    - apache2-mpm-itk
-    - cups-client
-    - etckeeper
-    - evince
-    - git
-    - git-svn
-    - iptables
-    - keychain
-    - network-manager
-    - network-manager-gnome
-    - ntp
-    - ntp
-    - openssh-server
-    - openvpn
-    - pavucontrol
-    - pm-utils
-    - preload
-    - pulseaudio
-    - subversion
-    - sudo
-    - tig
-    - vim
-    - vim-gtk
-    - wine
-    - xscreensaver
-- name: install multimedia packages
+    name:
+      - etckeeper
+      - git
+      - git-svn
+      - subversion
+      - sudo
+      - vim
+    state: present
+- name: install latex packages
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - acoustid-fingerprinter
-    - audacity
-    - cmus
-    - easytag
-    - faad
-    - gimp
-    - imagemagick
-    - lame
-    - libav-tools
-    - mypaint
-    - vlc
-- name: install office packages
-  apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - abook
-    - biber
-    - chromium
-    - gnuplot
-    - graphviz
-    - hamster-applet
-    - libreoffice
-    - links
-    - mcabber
-    - mutt
-    - mutt-patched
-    - texlive
-    - texlive-bibtex-extra
-    - texlive-fonts-extra
-    - texlive-lang-polish
-    - texlive-latex-extra
+    name:
+      - texlive
+      - texlive-bibtex-extra
+      - texlive-fonts-extra
+      - texlive-lang-polish
+      - texlive-latex-extra
+    state: present
 - name: install programming packages
   apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - build-essential
-    - ipython
-    - java-package
-    - libsqlite3-dev
-    - libvirt-bin
-    - maven
-    - nodejs
-    - openjdk-7-jdk
-    - poedit
-    - python
-    - python-dev
-    - python-pip
-    - python-sphinx
-    - python3
-    - python3-dev
-    - ruby
-    - ruby-dev
-    - virtualenv
-- name: install screencasting packages
-  apt:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - byzanz
-    - key-mon
-    - vokoscreen
+    name:
+      - build-essential
+      - libsqlite3-dev
+      - maven
+      - nodejs
+      - openjdk-11-jdk
+      - poedit
+      - python3
+      - python3-dev
+      - virtualenv
+    state: present
