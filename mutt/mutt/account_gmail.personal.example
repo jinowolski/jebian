@@ -1,8 +1,0 @@
-set realname = "Jan Kowalski"
-set from = "Jan Kowalski <kowalski@example.com>"
-alternates ""
-
-set smtp_url=smtps://kowalski\@example.com:smtp_password@smtp.gmail.com/
-
-set imap_user=kowalski
-set imap_pass=password

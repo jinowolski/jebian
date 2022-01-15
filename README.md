@@ -12,6 +12,4 @@ Includes:
 * Vim settings (.vimrc)
 * Awesome WM settings (rc.lua)
 * Git settings and custom commands (.gitconfig)
-* Cmus status notification for Awesome WM
-* Mutt settings
 
