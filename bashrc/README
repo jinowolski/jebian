@@ -1,3 +1,5 @@
 Include this directory in the .bashrc file:
 
     source /path/to/bashrc/main.sh
+
+See aws.sh for additional info regarding AWS CLI setup

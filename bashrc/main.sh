@@ -9,3 +9,4 @@ source $DIR/nobell.sh
 source $DIR/autovirtualenv.sh
 source $DIR/pipcache.sh
 source $DIR/aliases.sh
+source $DIR/aws.sh
