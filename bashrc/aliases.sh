@@ -14,6 +14,7 @@ alias grep='grep --exclude-dir=.git'
 alias mtr='mtr -t'
 alias skype='env PULSE_LATENCY_MSEC=30 skype'
 alias poff='sudo shutdown -h now'
+alias checkip='curl http://checkip.amazonaws.com/'
 
 #-----------------------------------------------------------------------------
 # Text conversions
